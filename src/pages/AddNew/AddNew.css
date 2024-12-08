@@ -1,0 +1,35 @@
+.AddNew {
+  padding: 2rem 5%;
+}
+
+.AddNew header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.AddNew svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--liver);
+  cursor: pointer;
+}
+
+.AddNew input {
+  width: 60%;
+}
+
+.AddNew main div:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.AddNew .add-more {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--liver);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}

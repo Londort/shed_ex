@@ -1,0 +1,48 @@
+.ScheduleInput {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Расстояние между полями */
+  margin: 0 auto; /* Центрирование формы по горизонтали */
+  padding: 1.5rem;
+  background-color: var(--misty-rose);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.ScheduleInput button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 100px;
+}
+
+.ScheduleInput label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  color: var(--liver);
+}
+
+.ScheduleInput input,
+.ScheduleInput textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  border: 1px solid var(--silver);
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box; /* Учитывать padding в общей ширине */
+}
+
+.ScheduleInput textarea {
+  resize: none; /* Отключаем изменение размера */
+  height: 100px;
+}
+
+.ScheduleInput button:hover {
+  background-color: var(--rosy-brown);
+}

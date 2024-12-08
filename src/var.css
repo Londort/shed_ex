@@ -1,9 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 :root {
-  --background-colour: #f0f0f0;
-  --mainText-colour: #1e1e1e;
-  --secondaryText-colour: #505050;
-  --element-colour1: #c8c8c8;
-  --element-colour2: #969696;
-  --extra-colour1: #832161;
-  --extra-colour2: #e28413;
+  /* https://coolors.co/f0f0f0-c8c8c8-832161-969696-e28413-505050-1e1e1e */
+  --anti-flesh-white: #f0f0f0;
+  --eerie-black: #1e1e1e;
+  --davys-gray: #505050;
+  --silver: #c8c8c8;
+  --battleship-gray: #969696;
+  --byzantium: #832161;
+  --fulvous: #e28413;
+
+  /* https://coolors.co/2a0800-775144-c09791-bda8a7-f6dad7 */
+  --black-bean: #2a0800;
+  --liver: #775144;
+  --rosy-brown: #c09791;
+  --rose-quartz: #bda8a7;
+  --misty-rose: #f6dad7;
+
+  --white: #ffffff;
+  --black: #000000;
+
+  --font-primary: 'Nunito', sans-serif;
+  --font-secondary: 'Lora', serif;
 }

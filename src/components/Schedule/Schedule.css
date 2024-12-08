@@ -1,0 +1,9 @@
+.Schedule {
+  width: 400px;
+  height: 250px;
+  background-color: var(--rosy-brown);
+  background-color: var(--misty-rose);
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
+}

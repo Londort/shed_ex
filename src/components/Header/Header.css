@@ -1,0 +1,67 @@
+@import '../../var.css';
+
+.Header {
+  width: 100%;
+  height: 80px;
+  /* background-color: var(--rosy-brown); */
+  background-color: var(--liver);
+  color: var(--white);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 5%;
+}
+
+.subHeader {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 2rem;
+}
+
+.subHeader .addNew {
+  background-color: var(--misty-rose);
+  padding: 5px 20px;
+  color: var(--rose-quartz);
+  color: var(--black-bean);
+  border-radius: 15px;
+  text-wrap: nowrap;
+}
+
+.subHeader .addNew:hover {
+  color: var(--rosy-brown);
+}
+
+.subHeader .login {
+  cursor: pointer;
+}
+
+.subHeader .login svg {
+  width: 30px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subHeader .login:hover {
+  color: var(--rosy-brown);
+}
+
+@media screen and (max-width: 980px) {
+  .Header {
+    height: 50px;
+  }
+
+  .Header h1 {
+    font-size: 1.5rem;
+  }
+
+  .subHeader {
+    gap: 1rem;
+  }
+}
