@@ -4,6 +4,8 @@
 
 .AddNew header {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   margin-bottom: 1rem;
 }
@@ -15,15 +17,48 @@
   cursor: pointer;
 }
 
+.AddNew .caption {
+  margin: auto;
+  width: 70%;
+  padding: 1.5rem;
+  background-color: var(--misty-rose);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.AddNew label {
+  display: flex;
+  flex-direction: column;
+  /* width: 70%; */
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  color: var(--liver);
+  margin: 0 auto;
+}
+
 .AddNew input {
-  width: 60%;
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border: 1px solid var(--silver);
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
 }
 
 .AddNew main div:not(:last-child) {
   margin-bottom: 2rem;
 }
 
-.AddNew .add-more {
+.AddNew .btns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.AddNew .add-more,
+.AddNew .save {
   padding: 0.75rem 1.5rem;
   background-color: var(--liver);
   color: var(--white);

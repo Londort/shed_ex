@@ -6,6 +6,7 @@
 @import './components/Schedule/Schedule.css';
 @import './pages/AddNew/AddNew.css';
 @import './components/ScheduleInput/ScheduleInput.css';
+@import './pages/ScheduleDetails/ScheduleDetails.css';
 
 body {
   margin: 0;

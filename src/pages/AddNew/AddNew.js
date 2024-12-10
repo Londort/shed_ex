@@ -1,32 +1,101 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { SlArrowLeftCircle } from 'react-icons/sl';
-
 import ScheduleInput from '../../components/ScheduleInput/ScheduleInput';
 
-const AddNew = () => {
+const AddNew = ({ addSchedule }) => {
   const navigate = useNavigate();
-  const [scheduleInputs, setScheduleInputs] = useState([1]);
 
-  const addScheduleInput = () => {
-    setScheduleInputs([...scheduleInputs, scheduleInputs.length + 1]);
+  // Состояние для caption и массива лекций
+  const [caption, setCaption] = useState('');
+  const [lections, setLections] = useState([
+    {
+      id: uuidv4(),
+      title: '',
+      startDate: '',
+      reminder: 30,
+      location: '',
+      description: '',
+    },
+  ]);
+
+  // Добавление новой лекции
+  const addLecture = () => {
+    const newLecture = {
+      id: uuidv4(),
+      title: '',
+      startDate: '',
+      reminder: 30,
+      location: '',
+      description: '',
+    };
+    setLections([...lections, newLecture]);
+  };
+
+  // Обновление лекции
+  const updateLecture = (id, field, value) => {
+    setLections(
+      lections.map((lecture) =>
+        lecture.id === id ? { ...lecture, [field]: value } : lecture
+      )
+    );
+  };
+
+  // Удаление лекции
+  const deleteLecture = (id) => {
+    setLections(lections.filter((lecture) => lecture.id !== id));
+  };
+
+  // Отправка нового schedule
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newSchedule = {
+      id: uuidv4(),
+      caption,
+      lections,
+    };
+    addSchedule(newSchedule);
+    navigate('/');
   };
 
   return (
     <div className="AddNew">
       <header>
         <SlArrowLeftCircle onClick={() => navigate('/')} title="Go Back" />
-        <input placeholder="Schedule Name"></input>
+        <h2>Create New Schedule</h2>
       </header>
       <main>
-        {scheduleInputs.map((_, index) => (
-          <div>
-            <ScheduleInput key={index} />
+        <div className="caption">
+          <label>
+            Caption:
+            <input
+              type="text"
+              value={caption}
+              onChange={(e) => setCaption(e.target.value)}
+              placeholder="Enter schedule caption"
+              required
+            />
+          </label>
+        </div>
+        <form onSubmit={handleSubmit}>
+          {lections.map((lecture) => (
+            <ScheduleInput
+              key={lecture.id}
+              data={lecture}
+              updateLecture={updateLecture}
+              deleteLecture={deleteLecture}
+            />
+          ))}
+          <div className="btns">
+            <button className="add-more" type="button" onClick={addLecture}>
+              + Add More
+            </button>
+            <button className="save" type="submit">
+              Save Schedule
+            </button>
           </div>
-        ))}
-        <button className="add-more" onClick={addScheduleInput}>
-          Add More
-        </button>
+        </form>
       </main>
     </div>
   );

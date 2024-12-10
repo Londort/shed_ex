@@ -1,32 +1,15 @@
-import { useState } from 'react';
-
-const ScheduleInput = () => {
-  const [title, setTitle] = useState(''); // Название лекции
-  const [startDate, setStartDate] = useState(''); // Дата и время начала
-  const [endDate, setEndDate] = useState(''); // Дата и время окончания
-  const [location, setLocation] = useState(''); // Местоположение
-  const [description, setDescription] = useState(''); // Описание
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log({
-      title,
-      startDate,
-      endDate,
-      location,
-      description,
-    });
-  };
-
+const ScheduleInput = ({ data, updateLecture, deleteLecture }) => {
   return (
-    <form className="ScheduleInput" onSubmit={handleSubmit}>
-      <button className="delete">Delete</button>
+    <div className="ScheduleInput">
+      <button type="button" onClick={() => deleteLecture(data.id)}>
+        Delete Lecture
+      </button>
       <label>
         Title:
         <input
           type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={data.title}
+          onChange={(e) => updateLecture(data.id, 'title', e.target.value)}
           placeholder="Enter lecture title"
           required
         />
@@ -35,38 +18,41 @@ const ScheduleInput = () => {
         Start Date & Time:
         <input
           type="datetime-local"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
+          value={data.startDate}
+          onChange={(e) => updateLecture(data.id, 'startDate', e.target.value)}
           required
         />
       </label>
       <label>
-        End Date & Time:
+        Reminder (minutes):
         <input
-          type="datetime-local"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-          required
+          type="number"
+          value={data.reminder}
+          onChange={(e) => updateLecture(data.id, 'reminder', e.target.value)}
+          min="1"
+          max="1440"
         />
       </label>
       <label>
         Location:
         <input
           type="text"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          placeholder="Enter location (optional)"
+          value={data.location}
+          onChange={(e) => updateLecture(data.id, 'location', e.target.value)}
+          placeholder="Enter location"
         />
       </label>
       <label>
         Description:
         <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Enter additional details"
+          value={data.description}
+          onChange={(e) =>
+            updateLecture(data.id, 'description', e.target.value)
+          }
+          placeholder="Enter description"
         ></textarea>
       </label>
-    </form>
+    </div>
   );
 };
 
