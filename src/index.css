@@ -1,12 +1,17 @@
 @import './var.css';
 @import './reset.css';
+/* pages css */
 @import './pages/Home/Home.css';
+@import './pages/AddNew/AddNew.css';
+@import './pages/ScheduleDetails/ScheduleDetails.css';
+/* components css */
 @import './components/Main/Main.css';
 @import './components/Header/Header.css';
 @import './components/Schedule/Schedule.css';
-@import './pages/AddNew/AddNew.css';
 @import './components/ScheduleInput/ScheduleInput.css';
-@import './pages/ScheduleDetails/ScheduleDetails.css';
+@import './components/Aside/Aside.css';
+@import './components/CoursePopup/CoursePopup.css';
+@import './components/LecturePopup/LecturePopup.css';
 
 body {
   margin: 0;

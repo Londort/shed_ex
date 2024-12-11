@@ -16,7 +16,10 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home schedules={schedules} />} />
+          <Route
+            path="/"
+            element={<Home schedules={schedules} setSchedules={setSchedules} />}
+          />
           <Route
             path="/add-new"
             element={<AddNew addSchedule={addSchedule} />}

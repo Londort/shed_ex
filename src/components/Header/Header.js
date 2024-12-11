@@ -1,14 +1,12 @@
 import { CgProfile } from 'react-icons/cg';
-import { useNavigate } from 'react-router-dom';
 
-const Header = () => {
-  const navigate = useNavigate();
+const Header = (props) => {
+  const { setCoursePopup } = props;
 
   return (
     <header className="Header">
-      <h1>SchedEx</h1>
       <div className="subHeader">
-        <button className="addNew" onClick={() => navigate('/add-new')}>
+        <button className="addNew" onClick={() => setCoursePopup(true)}>
           Add New
         </button>
         <div className="login">

@@ -63,12 +63,12 @@ const AddNew = ({ addSchedule }) => {
     <div className="AddNew">
       <header>
         <SlArrowLeftCircle onClick={() => navigate('/')} title="Go Back" />
-        <h2>Create New Schedule</h2>
+        <h2>Nuovo Corso</h2>
       </header>
       <main>
         <div className="caption">
           <label>
-            Caption:
+            Nome del corso:
             <input
               type="text"
               value={caption}
