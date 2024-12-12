@@ -67,6 +67,8 @@ const Main = ({
     setDeleteLecture(null); // Закрыть попап
   };
 
+  console.log(activeSchedule);
+
   return (
     <>
       <main className="Main">
@@ -74,7 +76,9 @@ const Main = ({
         {activeSchedule ? (
           <section className="main-content">
             <section className="btns">
-              <h2>Lezioni</h2>
+              <div>
+                <h2>{activeSchedule.caption}</h2>
+              </div>
               <button onClick={() => setLecturePopup(true)}>
                 <FiPlus /> Lezione
               </button>

@@ -1,26 +1,51 @@
 .Aside {
   top: 0;
   left: 0;
-  height: 100vh;
   width: 25%;
   background-color: var(--black-bean);
   padding: 0 1rem;
+
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Полная высота экрана */
 }
 
 .Aside .logo {
-  height: 80px;
+  height: 80px; /* Фиксированная высота для логотипа */
   display: grid;
   place-items: center;
+  flex-shrink: 0; /* Логотип не сжимается */
 }
+
 .Aside .logo h1 {
   color: var(--white);
   font-size: 1.5rem;
+}
+
+.Aside .courses {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+
+  /* Убираем полосы прокрутки */
+  /* scrollbar-width: none; */
+}
+
+.Aside .courses::-webkit-scrollbar {
+  display: none;
 }
 
 .Aside fieldset {
   border-bottom: none;
   border-left: none;
   border-right: none;
+  padding: 1rem 0 0 0;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.Aside fieldset::-webkit-scrollbar {
+  display: none;
 }
 
 .Aside .courses legend {
@@ -29,8 +54,10 @@
 }
 
 .Aside .courses ul {
-  color: var(--white);
-  margin: 2rem 0px;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .Aside .courses ul li {
@@ -41,12 +68,12 @@
   border-radius: 0.25rem;
   color: var(--black);
   cursor: pointer;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 
   transition: all 0.3s ease-in-out;
 }
 
 .Aside .courses ul li:hover {
-  transform: translateX(0.25rem);
-  background-color: var(--white);
+  transform: translateX(0.5rem);
+  z-index: 2;
 }

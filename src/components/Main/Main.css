@@ -18,6 +18,10 @@
   align-items: center;
 }
 
+.Main .btns h2 {
+  text-transform: capitalize;
+}
+
 .Main .btns button {
   padding: 0.5rem 1.5rem;
   background-color: var(--misty-rose);
