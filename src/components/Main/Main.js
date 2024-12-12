@@ -6,6 +6,7 @@ import DeletePopup from '../DeletePopup/DeletePopup.js';
 import { FiPlus } from 'react-icons/fi';
 import { MdOutlineCancel } from 'react-icons/md';
 import { IoShareSocialOutline } from 'react-icons/io5';
+import { TbCalendarDown } from 'react-icons/tb';
 
 const Main = ({
   activeSchedule,
@@ -135,9 +136,6 @@ END:VEVENT`;
     const shareUrl = `${window.location.origin}/share/${activeSchedule.id}`;
     const title = `Course: ${activeSchedule.caption}`;
 
-    // Генерация и скачивание .ics файла
-    generateICS();
-
     // Проверяем, поддерживается ли navigator.share
     if (navigator.share) {
       navigator.share({
@@ -182,6 +180,13 @@ END:VEVENT`;
                   onClick={() => handleShare()}
                 >
                   <IoShareSocialOutline />
+                </button>
+                <button
+                  title="Scaricare .ICS"
+                  className="share download"
+                  onClick={generateICS} // Вызов функции скачивания .ics файла
+                >
+                  <TbCalendarDown />
                 </button>
               </div>
             </section>
