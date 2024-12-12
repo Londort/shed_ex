@@ -38,8 +38,15 @@
   text-transform: capitalize;
   background-color: var(--rose-quartz);
   padding: 0.5rem;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   color: var(--black);
   cursor: pointer;
   margin-bottom: 2rem;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.Aside .courses ul li:hover {
+  transform: translateX(0.25rem);
+  background-color: var(--white);
 }

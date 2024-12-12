@@ -1,4 +1,5 @@
 import { CgProfile } from 'react-icons/cg';
+import { FiPlusCircle, FiPlus } from 'react-icons/fi';
 
 const Header = (props) => {
   const { setCoursePopup } = props;
@@ -7,7 +8,7 @@ const Header = (props) => {
     <header className="Header">
       <div className="subHeader">
         <button className="addNew" onClick={() => setCoursePopup(true)}>
-          Add New
+          <FiPlus /> Corso
         </button>
         <div className="login">
           <CgProfile />

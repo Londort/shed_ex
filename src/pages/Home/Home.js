@@ -33,6 +33,7 @@ const Home = (props) => {
       <Aside schedules={schedules} selectSchedule={handleSelectSchedule} />
       <Main
         activeSchedule={activeSchedule}
+        setActiveSchedule={setActiveSchedule}
         setSchedules={setSchedules}
         setCoursePopup={setCoursePopup}
         setLecturePopup={setLecturePopup}
