@@ -7,7 +7,11 @@ const Header = (props) => {
   return (
     <header className="Header">
       <div className="subHeader">
-        <button className="addNew" onClick={() => setCoursePopup(true)}>
+        <button
+          title="Creare Corso"
+          className="addNew"
+          onClick={() => setCoursePopup(true)}
+        >
           <FiPlus /> Corso
         </button>
         <div className="login">

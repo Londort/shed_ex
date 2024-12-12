@@ -4,6 +4,7 @@ import EditLecturePopup from '../EditLecturePopup/EditLecturePopup.js';
 import DeletePopup from '../DeletePopup/DeletePopup.js';
 import { FiPlus } from 'react-icons/fi';
 import { MdOutlineCancel } from 'react-icons/md';
+import { IoShareSocialOutline } from 'react-icons/io5';
 
 const Main = ({
   activeSchedule,
@@ -12,8 +13,9 @@ const Main = ({
   setCoursePopup,
   setLecturePopup,
 }) => {
-  const [editLecture, setEditLecture] = useState(null); // Текущая лекция для редактирования
+  const [editLecture, setEditLecture] = useState(null); // Лекция для редактирования
   const [deleteLecture, setDeleteLecture] = useState(null); // Лекция для удаления
+  const [deleteCourse, setDeleteCourse] = useState(null); // Курс для удаления
 
   // Функция сохранения изменений лекции
   const handleSaveLecture = (updatedLecture) => {
@@ -30,7 +32,6 @@ const Main = ({
       )
     );
 
-    // Обновляем activeSchedule напрямую
     setActiveSchedule((prevActive) => ({
       ...prevActive,
       lections: prevActive.lections.map((lecture) =>
@@ -56,7 +57,6 @@ const Main = ({
       )
     );
 
-    // Обновляем activeSchedule
     setActiveSchedule((prevActive) => ({
       ...prevActive,
       lections: prevActive.lections.filter(
@@ -64,10 +64,18 @@ const Main = ({
       ),
     }));
 
-    setDeleteLecture(null); // Закрыть попап
+    setDeleteLecture(null);
   };
 
-  console.log(activeSchedule);
+  // Функция удаления курса
+  const handleDeleteCourse = () => {
+    setSchedules((prevSchedules) =>
+      prevSchedules.filter((schedule) => schedule.id !== deleteCourse.id)
+    );
+
+    setActiveSchedule(null); // Сбрасываем активный курс
+    setDeleteCourse(null); // Закрываем попап
+  };
 
   return (
     <>
@@ -75,44 +83,61 @@ const Main = ({
         <Header setCoursePopup={setCoursePopup} />
         {activeSchedule ? (
           <section className="main-content">
-            <section className="btns">
-              <div>
+            <section className="caption">
+              <div className="course-caption">
                 <h2>{activeSchedule.caption}</h2>
-              </div>
-              <button onClick={() => setLecturePopup(true)}>
-                <FiPlus /> Lezione
-              </button>
-            </section>
-            {activeSchedule.lections.map((lecture) => (
-              <div
-                key={lecture.id}
-                className="lecture-card"
-                onClick={() => setEditLecture(lecture)}
-              >
                 <MdOutlineCancel
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setDeleteLecture(lecture);
-                  }}
+                  title="Eliminare Corso"
+                  onClick={() => setDeleteCourse(activeSchedule)}
                 />
-                <h3>{lecture.title}</h3>
-                <p>
-                  <strong>Data:</strong> {lecture.startDate.split('T')[0]}
-                </p>
-                <p>
-                  <strong>Ore:</strong> {lecture.startDate.split('T')[1]}
-                </p>
-                <p>
-                  <strong>Reminder:</strong> {lecture.reminder} minutes
-                </p>
-                <p>
-                  <strong>Locazione:</strong> {lecture.location}
-                </p>
-                <p>
-                  <strong>Descrizione:</strong> {lecture.description}
-                </p>
               </div>
-            ))}
+              <div className="btns">
+                <button
+                  className="new-lection"
+                  title="Aggiungere Lezione"
+                  onClick={() => setLecturePopup(true)}
+                >
+                  <FiPlus /> Lezione
+                </button>
+                <button title="Condividere" className="share">
+                  <IoShareSocialOutline />
+                </button>
+              </div>
+            </section>
+            <section className="lection-list">
+              {activeSchedule.lections.map((lecture) => (
+                <div
+                  key={lecture.id}
+                  className="lecture-card"
+                  onClick={() => setEditLecture(lecture)}
+                >
+                  <MdOutlineCancel
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setDeleteLecture(lecture);
+                    }}
+                    title="Eliminare Lezione"
+                    style={{ cursor: 'pointer' }}
+                  />
+                  <h3>{lecture.title}</h3>
+                  <p>
+                    <strong>Data:</strong> {lecture.startDate.split('T')[0]}
+                  </p>
+                  <p>
+                    <strong>Ore:</strong> {lecture.startDate.split('T')[1]}
+                  </p>
+                  <p>
+                    <strong>Reminder:</strong> {lecture.reminder} minutes
+                  </p>
+                  <p>
+                    <strong>Locazione:</strong> {lecture.location}
+                  </p>
+                  <p>
+                    <strong>Descrizione:</strong> {lecture.description}
+                  </p>
+                </div>
+              ))}
+            </section>
           </section>
         ) : (
           <p>Select a schedule to see its lectures</p>
@@ -128,12 +153,21 @@ const Main = ({
         />
       )}
 
-      {/* Попап подтверждения удаления */}
+      {/* Попап подтверждения удаления лекции */}
       {deleteLecture && (
         <DeletePopup
           lectureTitle={deleteLecture.title}
           onConfirm={handleDeleteLecture}
           onCancel={() => setDeleteLecture(null)}
+        />
+      )}
+
+      {/* Попап подтверждения удаления курса */}
+      {deleteCourse && (
+        <DeletePopup
+          lectureTitle={deleteCourse.caption}
+          onConfirm={handleDeleteCourse}
+          onCancel={() => setDeleteCourse(null)}
         />
       )}
     </>
