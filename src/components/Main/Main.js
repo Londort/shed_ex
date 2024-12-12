@@ -79,10 +79,64 @@ const Main = ({
     setDeleteCourse(null); // Закрываем попап
   };
 
+  // Функция создания и скачивания .ics файла
+  const generateICS = () => {
+    // Локальная функция для форматирования даты в формат YYYYMMDDTHHMMSS
+    const formatDateToICS = (date) => {
+      const pad = (num) => String(num).padStart(2, '0');
+
+      const year = date.getFullYear();
+      const month = pad(date.getMonth() + 1);
+      const day = pad(date.getDate());
+      const hours = pad(date.getHours());
+      const minutes = pad(date.getMinutes());
+      const seconds = pad(date.getSeconds());
+
+      return `${year}${month}${day}T${hours}${minutes}${seconds}`;
+    };
+
+    let icsContent = `BEGIN:VCALENDAR\nVERSION:2.0\nCALSCALE:GREGORIAN\nPRODID:-//SchedEx//EN\n`;
+
+    activeSchedule.lections.forEach((lecture) => {
+      const startDate = new Date(lecture.startDate); // Дата начала
+      const duration = lecture.duration || 30; // Длительность в минутах
+
+      const endDate = new Date(startDate.getTime() + duration * 60000); // Время окончания
+
+      const formattedStartDate = formatDateToICS(startDate); // Локальное время начала
+      const formattedEndDate = formatDateToICS(endDate); // Локальное время окончания
+
+      icsContent += `
+BEGIN:VEVENT
+SUMMARY:${activeSchedule.caption} - ${lecture.title}
+DTSTART:${formattedStartDate}
+DTEND:${formattedEndDate}
+DESCRIPTION:${lecture.description || ''}
+LOCATION:${lecture.location || ''}
+END:VEVENT`;
+    });
+
+    icsContent += `\nEND:VCALENDAR`;
+
+    // Создание и скачивание файла
+    const blob = new Blob([icsContent], {
+      type: 'text/calendar;charset=utf-8',
+    });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `${activeSchedule.caption.replace(/\s+/g, '_')}.ics`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   // Логика для API "поделиться" или копирования ссылки
   const handleShare = () => {
     const shareUrl = `${window.location.origin}/share/${activeSchedule.id}`;
     const title = `Course: ${activeSchedule.caption}`;
+
+    // Генерация и скачивание .ics файла
+    generateICS();
 
     // Проверяем, поддерживается ли navigator.share
     if (navigator.share) {
