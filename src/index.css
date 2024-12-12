@@ -3,7 +3,7 @@
 /* pages css */
 @import './pages/Home/Home.css';
 @import './pages/AddNew/AddNew.css';
-@import './pages/ScheduleDetails/ScheduleDetails.css';
+@import './pages/SharePage/SharePage.css';
 /* components css */
 @import './components/Main/Main.css';
 @import './components/Header/Header.css';

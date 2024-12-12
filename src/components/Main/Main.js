@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header.js';
 import EditLecturePopup from '../EditLecturePopup/EditLecturePopup.js';
 import DeletePopup from '../DeletePopup/DeletePopup.js';
@@ -16,6 +17,7 @@ const Main = ({
   const [editLecture, setEditLecture] = useState(null); // Лекция для редактирования
   const [deleteLecture, setDeleteLecture] = useState(null); // Лекция для удаления
   const [deleteCourse, setDeleteCourse] = useState(null); // Курс для удаления
+  const navigate = useNavigate(); // Для навигации на страницу просмотра курса
 
   // Функция сохранения изменений лекции
   const handleSaveLecture = (updatedLecture) => {
@@ -77,18 +79,39 @@ const Main = ({
     setDeleteCourse(null); // Закрываем попап
   };
 
+  // Логика для API "поделиться" или копирования ссылки
+  const handleShare = () => {
+    const shareUrl = `${window.location.origin}/share/${activeSchedule.id}`;
+    const title = `Course: ${activeSchedule.caption}`;
+
+    // Проверяем, поддерживается ли navigator.share
+    if (navigator.share) {
+      navigator.share({
+        title,
+        text: 'Check out this course:',
+        url: shareUrl,
+      });
+    } else {
+      // Если API не поддерживается – копируем ссылку
+      navigator.clipboard.writeText(shareUrl);
+      alert('Link copied to clipboard!');
+    }
+  };
+
   return (
     <>
       <main className="Main">
         <Header setCoursePopup={setCoursePopup} />
         {activeSchedule ? (
           <section className="main-content">
+            {/* Заголовок курса и кнопки */}
             <section className="caption">
               <div className="course-caption">
                 <h2>{activeSchedule.caption}</h2>
                 <MdOutlineCancel
                   title="Eliminare Corso"
                   onClick={() => setDeleteCourse(activeSchedule)}
+                  style={{ cursor: 'pointer' }}
                 />
               </div>
               <div className="btns">
@@ -99,11 +122,17 @@ const Main = ({
                 >
                   <FiPlus /> Lezione
                 </button>
-                <button title="Condividere" className="share">
+                <button
+                  title="Condividere"
+                  className="share"
+                  onClick={() => handleShare()}
+                >
                   <IoShareSocialOutline />
                 </button>
               </div>
             </section>
+
+            {/* Список лекций */}
             <section className="lection-list">
               {activeSchedule.lections.map((lecture) => (
                 <div

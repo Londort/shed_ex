@@ -1,0 +1,44 @@
+.SharePage {
+  padding: 2rem 5%;
+  font-family: Arial, sans-serif;
+}
+
+.share-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.share-header h1 {
+  text-transform: capitalize;
+  color: var(--black-bean);
+}
+
+.lecture-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.lecture-card {
+  background-color: var(--misty-rose);
+  border: 1px solid var(--liver);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  width: 30%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.lecture-card:hover {
+  transform: translateY(-0.25rem);
+}
+
+.lecture-card h3 {
+  margin-bottom: 1rem;
+  color: var(--black-bean);
+}
+
+.lecture-card p {
+  margin: 0.5rem 0;
+  color: var(--liver);
+}

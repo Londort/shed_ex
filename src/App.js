@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home/Home.js';
 import AddNew from './pages/AddNew/AddNew.js';
-import ScheduleDetails from './pages/ScheduleDetails/ScheduleDetails';
+import SharePage from './pages/SharePage/SharePage.js';
 
 function App() {
   const [schedules, setSchedules] = useState([]);
@@ -25,8 +25,8 @@ function App() {
             element={<AddNew addSchedule={addSchedule} />}
           />
           <Route
-            path="/schedule/:id"
-            element={<ScheduleDetails schedules={schedules} />}
+            path="/share/:id"
+            element={<SharePage schedules={schedules} />}
           />
         </Routes>
       </div>
