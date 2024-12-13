@@ -10,14 +10,14 @@ const CoursePopup = ({ addSchedule, onClose }) => {
   };
 
   return (
-    <div className="Popup">
+    <div className="CoursePopup">
       <div className="popup-content">
-        <h2>Create New Course</h2>
+        <h2>Nuovo corso</h2>
         <input
           type="text"
           value={caption}
           onChange={(e) => setCaption(e.target.value)}
-          placeholder="Enter course caption"
+          placeholder="Nome del corso"
         />
         <div className="popup-actions">
           <button onClick={handleSave}>Save</button>

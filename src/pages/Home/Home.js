@@ -26,8 +26,6 @@ const Home = (props) => {
     setCoursePopup(false); // Закрыть попап после сохранения
   };
 
-  console.log(activeSchedule);
-
   return (
     <section className="Home">
       <Aside schedules={schedules} selectSchedule={handleSelectSchedule} />

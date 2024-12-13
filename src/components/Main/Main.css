@@ -42,7 +42,7 @@
 }
 .Main .caption .course-caption:hover > svg {
   fill: var(--liver);
-  transform: scale(1.2) rotate(270deg);
+  transform: scale(1.2);
 }
 
 .Main .caption h2 {

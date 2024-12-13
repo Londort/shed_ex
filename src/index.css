@@ -12,6 +12,7 @@
 @import './components/Aside/Aside.css';
 @import './components/CoursePopup/CoursePopup.css';
 @import './components/LecturePopup/LecturePopup.css';
+@import './components/DeletePopup/DeletePopup.css';
 
 body {
   margin: 0;

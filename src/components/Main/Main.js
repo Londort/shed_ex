@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../Header/Header.js';
-import EditLecturePopup from '../EditLecturePopup/EditLecturePopup.js';
-import DeletePopup from '../DeletePopup/DeletePopup.js';
 import { FiPlus } from 'react-icons/fi';
 import { MdOutlineCancel } from 'react-icons/md';
 import { IoShareSocialOutline } from 'react-icons/io5';
 import { TbCalendarDown } from 'react-icons/tb';
+
+import Header from '../Header/Header.js';
+import EditLecturePopup from '../EditLecturePopup/EditLecturePopup.js';
+import DeletePopup from '../DeletePopup/DeletePopup.js';
+import Lecture from '../Lecture/Lecture.js';
 
 const Main = ({
   activeSchedule,
@@ -194,36 +196,12 @@ END:VEVENT`;
             {/* Список лекций */}
             <section className="lection-list">
               {activeSchedule.lections.map((lecture) => (
-                <div
+                <Lecture
                   key={lecture.id}
-                  className="lecture-card"
-                  onClick={() => setEditLecture(lecture)}
-                >
-                  <MdOutlineCancel
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setDeleteLecture(lecture);
-                    }}
-                    title="Eliminare Lezione"
-                    style={{ cursor: 'pointer' }}
-                  />
-                  <h3>{lecture.title}</h3>
-                  <p>
-                    <strong>Data:</strong> {lecture.startDate.split('T')[0]}
-                  </p>
-                  <p>
-                    <strong>Ore:</strong> {lecture.startDate.split('T')[1]}
-                  </p>
-                  <p>
-                    <strong>Reminder:</strong> {lecture.reminder} minutes
-                  </p>
-                  <p>
-                    <strong>Locazione:</strong> {lecture.location}
-                  </p>
-                  <p>
-                    <strong>Descrizione:</strong> {lecture.description}
-                  </p>
-                </div>
+                  lecture={lecture}
+                  setEditLecture={setEditLecture}
+                  setDeleteLecture={setDeleteLecture}
+                />
               ))}
             </section>
           </section>

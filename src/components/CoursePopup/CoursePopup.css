@@ -1,4 +1,4 @@
-.Popup {
+.CoursePopup {
   position: fixed;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@
   align-items: center;
 }
 
-.popup-content {
+.CoursePopup .popup-content {
   background: var(--white);
   padding: 2rem;
   border-radius: 8px;
